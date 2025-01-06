@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>ServiceRegistrationGenerator.Attributes</PackageId>
+    <PackageId>BunnyTail.ServiceRegistrationGenerator.Attributes</PackageId>
     <Title>ServiceRegistrationGenerator.Attributes</Title>
     <Description>ServiceRegistration source generator attributes.</Description>
     <PackageTags>sourcegenerator</PackageTags>

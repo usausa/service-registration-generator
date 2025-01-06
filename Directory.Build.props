@@ -20,7 +20,7 @@
     <Authors>machi_pon</Authors>
     <Copyright>Copyright (c) 2025 machi_pon</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/usausa/observable-property-generator</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/usausa/service-registration-generator</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
