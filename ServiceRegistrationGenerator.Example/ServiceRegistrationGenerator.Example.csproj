@@ -14,7 +14,7 @@
   </PropertyGroup>
   -->
 
-  <Import Project="..\ServiceRegistrationGenerator\build\ServiceRegistrationGenerator.props" />
+  <Import Project="..\ServiceRegistrationGenerator\build\BunnyTail.ServiceRegistrationGenerator.props" />
 
   <ItemGroup>
     <ProjectReference Include="..\ServiceRegistrationGenerator.Attributes\ServiceRegistrationGenerator.Attributes.csproj" />
