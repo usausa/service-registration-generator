@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ServiceRegistrationGenerator": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\ServiceRegistrationGenerator.Example\\ServiceRegistrationGenerator.Example.csproj"
+    }
+  }
+}

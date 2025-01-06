@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <CodeAnalysisRuleSet>..\Analyzers.ruleset</CodeAnalysisRuleSet>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <!--
+  <PropertyGroup>
+    <ServiceRegistrationGenerator></ServiceRegistrationGenerator>
+  </PropertyGroup>
+  -->
+
+  <Import Project="..\ServiceRegistrationGenerator\build\ServiceRegistrationGenerator.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceRegistrationGenerator.Attributes\ServiceRegistrationGenerator.Attributes.csproj" />
+    <ProjectReference Include="..\ServiceRegistrationGenerator\ServiceRegistrationGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+</Project>

@@ -1,1 +1,1 @@
-# source-generator-dependency-injection
+# service-registration-generator
