@@ -12,7 +12,11 @@ public sealed class ServiceRegistrationAttribute : Attribute
 
     public string Namespace { get; set; } = default!;
 
+#if NET8_0_OR_GREATER
     public ServiceRegistrationAttribute([StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
+#else
+    public ServiceRegistrationAttribute(string pattern)
+#endif
     {
         Pattern = pattern;
     }
