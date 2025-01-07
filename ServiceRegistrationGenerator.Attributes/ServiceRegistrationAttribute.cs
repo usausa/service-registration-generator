@@ -1,7 +1,9 @@
 namespace ServiceRegistrationGenerator.Attributes;
 
 using System;
+#if NET8_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
+#endif
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public sealed class ServiceRegistrationAttribute : Attribute
