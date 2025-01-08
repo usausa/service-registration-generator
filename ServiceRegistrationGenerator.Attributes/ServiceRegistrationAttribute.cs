@@ -5,6 +5,8 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 #endif
 
+// TODO LifeType
+
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public sealed class ServiceRegistrationAttribute : Attribute
 {

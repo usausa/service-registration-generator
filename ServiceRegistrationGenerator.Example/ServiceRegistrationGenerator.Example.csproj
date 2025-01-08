@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <ServiceRegistrationGenerator></ServiceRegistrationGenerator>
   </PropertyGroup>
 

@@ -1,8 +1,8 @@
 namespace ServiceRegistrationGenerator.Example;
 
-using Microsoft.Extensions.DependencyInjection;
-
 using ServiceRegistrationGenerator.Attributes;
+
+using Microsoft.Extensions.DependencyInjection;
 
 internal static class Program
 {
@@ -14,12 +14,8 @@ internal static class Program
     }
 }
 
-internal static class ServiceCollectionExtensions
+internal static partial class ServiceCollectionExtensions
 {
     [ServiceRegistration(".*Service.*")]
-    public static IServiceCollection AddServices(this IServiceCollection services)
-    {
-        // TODO
-        return services;
-    }
+    public static partial IServiceCollection AddServices(this IServiceCollection services);
 }
