@@ -5,11 +5,11 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 #endif
 
-// TODO LifeType
-
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public sealed class ServiceRegistrationAttribute : Attribute
 {
+    public Lifetime Lifetime { get; }
+
     public string Pattern { get; }
 
     public string Assembly { get; set; } = default!;
@@ -17,11 +17,12 @@ public sealed class ServiceRegistrationAttribute : Attribute
     public string Namespace { get; set; } = default!;
 
 #if NET8_0_OR_GREATER
-    public ServiceRegistrationAttribute([StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
+    public ServiceRegistrationAttribute(Lifetime lifetime, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
 #else
-    public ServiceRegistrationAttribute(string pattern)
+    public ServiceRegistrationAttribute(Lifetime lifetime, string pattern)
 #endif
     {
+        Lifetime = lifetime;
         Pattern = pattern;
     }
 }
