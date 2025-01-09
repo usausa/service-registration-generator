@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceRegistrationGenerator", "ServiceRegistrationGenerator\ServiceRegistrationGenerator.csproj", "{65C7BFD1-ACFA-42CF-83C6-04B9FB3DC0FE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7B1827FC-5A30-41E8-89B0-05FB866F3952} = {7B1827FC-5A30-41E8-89B0-05FB866F3952}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E7860D08-9A43-48B4-9FEF-F7D5290E69A9}"
 	ProjectSection(SolutionItems) = preProject
