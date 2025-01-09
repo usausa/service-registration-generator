@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceRegistrationGenerato
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceRegistrationGenerator.Tests", "ServiceRegistrationGenerator.Tests\ServiceRegistrationGenerator.Tests.csproj", "{87F5CAB3-A7E0-4E4C-B803-B45A45436169}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceRegistrationGenerator.ExampleLibrary", "ServiceRegistrationGenerator.ExampleLibrary\ServiceRegistrationGenerator.ExampleLibrary.csproj", "{43173B47-D847-4602-A68B-5F8AB7DDB330}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{87F5CAB3-A7E0-4E4C-B803-B45A45436169}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87F5CAB3-A7E0-4E4C-B803-B45A45436169}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87F5CAB3-A7E0-4E4C-B803-B45A45436169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43173B47-D847-4602-A68B-5F8AB7DDB330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43173B47-D847-4602-A68B-5F8AB7DDB330}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43173B47-D847-4602-A68B-5F8AB7DDB330}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43173B47-D847-4602-A68B-5F8AB7DDB330}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
