@@ -16,6 +16,11 @@ internal static class Program
 
 internal static partial class ServiceCollectionExtensions
 {
-    [ServiceRegistration(Lifetime.Singleton, ".*Service.*")]
+    [ServiceRegistration(Lifetime.Singleton, "Service$")]
     public static partial IServiceCollection AddServices(this IServiceCollection services);
+}
+
+#pragma warning disable CA1812
+internal sealed class TestService
+{
 }
