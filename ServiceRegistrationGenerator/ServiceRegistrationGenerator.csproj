@@ -27,11 +27,16 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceRegistrationGenerator.Attributes\ServiceRegistrationGenerator.Attributes.csproj" />
+  </ItemGroup>
+
   <Target Name="PackBuildOutputs" DependsOnTargets="SatelliteDllsProjectOutputGroup;DebugSymbolsProjectOutputGroup">
     <ItemGroup>
       <TfmSpecificPackageFile Include="build\**" PackagePath="build" />
       <TfmSpecificPackageFile Include="$(TargetDir)\*.dll" PackagePath="analyzers\dotnet\cs" />
       <TfmSpecificPackageFile Include="@(SatelliteDllsProjectOutputGroupOutput->'%(FinalOutputPath)')" PackagePath="analyzers\dotnet\cs\%(SatelliteDllsProjectOutputGroupOutput.Culture)\" />
+      <TfmSpecificPackageFile Include="..\ServiceRegistrationGenerator.Attributes\bin\$(Configuration)\**\*.dll" PackagePath="lib" />
     </ItemGroup>
   </Target>
 
