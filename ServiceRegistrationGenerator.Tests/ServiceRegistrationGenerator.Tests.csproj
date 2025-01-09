@@ -7,13 +7,16 @@
     <CodeAnalysisRuleSet>..\Analyzers.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
+  <Import Project="..\ServiceRegistrationGenerator\build\BunnyTail.ServiceRegistrationGenerator.props" />
+
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
-    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="xunit" Version="2.9.3" />
     <PackageReference Include="xunit.analyzers" Version="1.18.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -26,7 +29,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ServiceRegistrationGenerator.Attributes\ServiceRegistrationGenerator.Attributes.csproj" />
-    <ProjectReference Include="..\ServiceRegistrationGenerator\ServiceRegistrationGenerator.csproj" />
+    <ProjectReference Include="..\ServiceRegistrationGenerator.ExampleLibrary\ServiceRegistrationGenerator.ExampleLibrary.csproj" />
+    <ProjectReference Include="..\ServiceRegistrationGenerator\ServiceRegistrationGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
 </Project>
