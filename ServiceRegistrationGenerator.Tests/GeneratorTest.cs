@@ -2,7 +2,8 @@ namespace ServiceRegistrationGenerator.Tests;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using ServiceRegistrationGenerator.Attributes;
+using ServiceRegistrationGenerator;
+using ServiceRegistrationGenerator.ExampleLibrary;
 
 public class GeneratorTest
 {
@@ -13,8 +14,15 @@ public class GeneratorTest
             .AddServices()
             .BuildServiceProvider();
 
-        // TODO
         Assert.NotNull(provider.GetService<TestService>());
+        Assert.NotNull(provider.GetService<FooService>());
+        Assert.NotNull(provider.GetService<IBarService>());
+        Assert.NotNull(provider.GetService<IMixedService1>());
+        Assert.NotNull(provider.GetService<IMixedService2>());
+        Assert.NotNull(provider.GetService<DisposalService>());
+        Assert.NotNull(provider.GetService<IBazService>());
+
+        Assert.Equal(provider.GetService<TestService>(), provider.GetService<TestService>());
     }
 }
 

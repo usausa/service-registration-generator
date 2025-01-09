@@ -1,6 +1,6 @@
 namespace ServiceRegistrationGenerator.Example;
 
-using ServiceRegistrationGenerator.Attributes;
+using ServiceRegistrationGenerator;
 
 using Microsoft.Extensions.DependencyInjection;
 

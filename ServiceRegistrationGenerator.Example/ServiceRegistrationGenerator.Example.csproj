@@ -19,7 +19,6 @@
   <Import Project="..\ServiceRegistrationGenerator\build\BunnyTail.ServiceRegistrationGenerator.props" />
 
   <ItemGroup>
-    <ProjectReference Include="..\ServiceRegistrationGenerator.Attributes\ServiceRegistrationGenerator.Attributes.csproj" />
     <ProjectReference Include="..\ServiceRegistrationGenerator.ExampleLibrary\ServiceRegistrationGenerator.ExampleLibrary.csproj" />
     <ProjectReference Include="..\ServiceRegistrationGenerator\ServiceRegistrationGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
