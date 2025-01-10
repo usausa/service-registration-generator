@@ -16,6 +16,10 @@ internal static class Program
 
 internal static partial class ServiceCollectionExtensions
 {
+    [ServiceRegistration(Lifetime.Transient, "View$")]
+    [ServiceRegistration(Lifetime.Transient, "ViewModel$")]
+    public static partial IServiceCollection AddView(this IServiceCollection services);
+
     [ServiceRegistration(Lifetime.Singleton, "Service$")]
     [ServiceRegistration(Lifetime.Singleton, "Service$", Assembly = "ServiceRegistrationGenerator.ExampleLibrary")]
     public static partial IServiceCollection AddServices(this IServiceCollection services);

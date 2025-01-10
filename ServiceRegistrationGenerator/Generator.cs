@@ -128,7 +128,7 @@ public sealed class Generator : IIncrementalGenerator
             BuildSource(compilation, buffer, ns, methodSymbol);
 
             var source = buffer.ToString();
-            var filename = MakeRegistryFilename(buffer, ns, containingType.Name);
+            var filename = MakeRegistryFilename(buffer, ns, containingType.Name, methodSymbol.Name);
             context.AddSource(filename, SourceText.From(source, Encoding.UTF8));
         }
     }
@@ -358,7 +358,7 @@ public sealed class Generator : IIncrementalGenerator
         _ => throw new NotSupportedException()
     };
 
-    private static string MakeRegistryFilename(StringBuilder buffer, string ns, string className)
+    private static string MakeRegistryFilename(StringBuilder buffer, string ns, string className, string methodName)
     {
         buffer.Clear();
 
@@ -369,6 +369,8 @@ public sealed class Generator : IIncrementalGenerator
         }
 
         buffer.Append(className);
+        buffer.Append('_');
+        buffer.Append(methodName);
         buffer.Append(".g.cs");
 
         return buffer.ToString();
