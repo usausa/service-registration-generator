@@ -1,7 +1,7 @@
 <Project>
 
   <ItemGroup>
-    <CompilerVisibleProperty Include="ServiceRegistrationGenerator" />
+    <CompilerVisibleProperty Include="ServiceRegistrationIgnoreInterface" />
   </ItemGroup>
 
 </Project>

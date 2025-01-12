@@ -19,7 +19,7 @@ public sealed class Generator : IIncrementalGenerator
 
     private const string ServiceCollectionFullName = "Microsoft.Extensions.DependencyInjection.IServiceCollection";
 
-    private static readonly string[] IgnoredInterfaces =
+    private static readonly string[] IgnoreInterfaces =
     [
         "System.IDisposable",
         "System.IAsyncDisposable"
@@ -63,6 +63,10 @@ public sealed class Generator : IIncrementalGenerator
         });
 
         var compilationProvider = context.CompilationProvider;
+
+        var optionProvider = context.AnalyzerConfigOptionsProvider
+            .Select(static (provider, _) => provider.GlobalOptions.TryGetValue("build_property.ServiceRegistrationIgnoreInterface", out var value) ? value : string.Empty);
+
         var sourceProvider = context.SyntaxProvider
             .CreateSyntaxProvider(
                 static (node, _) => IsMethodTargetSyntax(node),
@@ -71,8 +75,8 @@ public sealed class Generator : IIncrementalGenerator
             .Collect();
 
         context.RegisterImplementationSourceOutput(
-            compilationProvider.Combine(sourceProvider),
-            static (context, provider) => Execute(context, provider.Left, provider.Right));
+            compilationProvider.Combine(optionProvider).Combine(sourceProvider),
+            static (context, provider) => Execute(context, provider.Left.Left, provider.Left.Right, provider.Right));
     }
 
     private static bool IsMethodTargetSyntax(SyntaxNode node) =>
@@ -84,8 +88,16 @@ public sealed class Generator : IIncrementalGenerator
     // Builder
     // ------------------------------------------------------------
 
-    private static void Execute(SourceProductionContext context, Compilation compilation, ImmutableArray<MethodDeclarationSyntax> methods)
+    private static void Execute(
+        SourceProductionContext context,
+        Compilation compilation,
+        string ignoreInterface,
+        ImmutableArray<MethodDeclarationSyntax> methods)
     {
+        var ignoreInterfaces = ignoreInterface
+            .Split([','], StringSplitOptions.RemoveEmptyEntries)
+            .Concat(IgnoreInterfaces)
+            .ToArray();
         var buffer = new StringBuilder(4096);
 
         foreach (var methodSyntax in methods)
@@ -125,7 +137,7 @@ public sealed class Generator : IIncrementalGenerator
             var ns = String.IsNullOrEmpty(containingType.ContainingNamespace.Name)
                 ? string.Empty
                 : containingType.ContainingNamespace.ToDisplayString();
-            BuildSource(compilation, buffer, ns, methodSymbol);
+            BuildSource(compilation, ignoreInterfaces, buffer, ns, methodSymbol);
 
             var source = buffer.ToString();
             var filename = MakeRegistryFilename(buffer, ns, containingType.Name, methodSymbol.Name);
@@ -173,6 +185,7 @@ public sealed class Generator : IIncrementalGenerator
 
     private static void BuildSource(
         Compilation compilation,
+        string[] ignoreInterfaces,
         StringBuilder buffer,
         string ns,
         IMethodSymbol methodSymbol)
@@ -231,7 +244,7 @@ public sealed class Generator : IIncrementalGenerator
 
                 var interfaces = namedTypeSymbol.Interfaces
                     .Select(static x => x.ToDisplayString())
-                    .Where(static x => !IgnoredInterfaces.Contains(x))
+                    .Where(x => !ignoreInterfaces.Contains(x))
                     .ToArray();
                 if (interfaces.Length == 0)
                 {

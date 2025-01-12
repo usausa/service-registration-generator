@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <ServiceRegistrationGenerator></ServiceRegistrationGenerator>
+    <ServiceRegistrationIgnoreInterface>IHoge</ServiceRegistrationIgnoreInterface>
   </PropertyGroup>
 
   <Import Project="..\ServiceRegistrationGenerator\build\BunnyTail.ServiceRegistrationGenerator.props" />
