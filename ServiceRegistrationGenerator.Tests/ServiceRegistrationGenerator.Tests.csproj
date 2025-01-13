@@ -7,6 +7,10 @@
     <CodeAnalysisRuleSet>..\Analyzers.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <ServiceRegistrationIgnoreInterface>ServiceRegistrationGenerator.Tests.INavigation</ServiceRegistrationIgnoreInterface>
+  </PropertyGroup>
+
   <Import Project="..\ServiceRegistrationGenerator\build\BunnyTail.ServiceRegistrationGenerator.props" />
 
   <ItemGroup>
