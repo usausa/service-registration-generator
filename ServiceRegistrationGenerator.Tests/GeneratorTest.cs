@@ -2,7 +2,6 @@ namespace ServiceRegistrationGenerator;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using ServiceRegistrationGenerator;
 using ServiceRegistrationGenerator.ExampleLibrary;
 
 public class GeneratorTest
