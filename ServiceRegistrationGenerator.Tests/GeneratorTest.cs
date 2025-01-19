@@ -1,4 +1,4 @@
-namespace ServiceRegistrationGenerator.Tests;
+namespace ServiceRegistrationGenerator;
 
 using Microsoft.Extensions.DependencyInjection;
 
