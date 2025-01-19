@@ -59,7 +59,7 @@ public sealed class Generator : IIncrementalGenerator
     {
         context.RegisterPostInitializationOutput(ctx =>
         {
-            ctx.AddSource("ServiceRegistrationGenerator", SourceText.From(AttributeSource, Encoding.UTF8));
+            ctx.AddSource("ServiceRegistrationGenerator.g.cs", SourceText.From(AttributeSource, Encoding.UTF8));
         });
 
         var compilationProvider = context.CompilationProvider;
