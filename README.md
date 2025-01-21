@@ -1,15 +1,17 @@
-# Service registory method generator
+# BunnyTail.ServiceRegistrationGenerator
 
 | Package | Info |
 |:-|:-|
 | BunnyTail.ServiceRegistrationGenerator | [![NuGet](https://img.shields.io/nuget/v/BunnyTail.ServiceRegistrationGenerator.svg)](https://www.nuget.org/packages/BunnyTail.ServiceRegistrationGenerator) |
 
+## What is this?
+
+Service registory method generator.
+
 ## Usage
 
 ```csharp
-namespace ServiceRegistrationGenerator.Example;
-
-using ServiceRegistrationGenerator;
+using BunnyTail.ServiceRegistration;
 
 using Microsoft.Extensions.DependencyInjection;
 

@@ -1,6 +1,6 @@
-namespace ServiceRegistrationGenerator.Example;
+namespace Develop;
 
-using ServiceRegistrationGenerator;
+using BunnyTail.ServiceRegistration;
 
 using Microsoft.Extensions.DependencyInjection;
 

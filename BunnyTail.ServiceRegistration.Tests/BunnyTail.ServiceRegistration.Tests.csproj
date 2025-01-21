@@ -4,21 +4,23 @@
     <TargetFramework>net9.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <CodeAnalysisRuleSet>..\Analyzers.ruleset</CodeAnalysisRuleSet>
-    <RootNamespace>ServiceRegistrationGenerator</RootNamespace>
+    <RootNamespace>BunnyTail.ServiceRegistration</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 
   <PropertyGroup>
     <ServiceRegistrationIgnoreInterface>ServiceRegistrationGenerator.INavigation</ServiceRegistrationIgnoreInterface>
   </PropertyGroup>
 
-  <Import Project="..\ServiceRegistrationGenerator\build\BunnyTail.ServiceRegistrationGenerator.props" />
-
   <ItemGroup>
-    <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.3">
+    <PackageReference Include="coverlet.collector" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -28,9 +30,12 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="3.0.1" />
   </ItemGroup>
 
+  <Import Project="..\BunnyTail.ServiceRegistration.Generator\build\BunnyTail.ServiceRegistration.props" />
+
   <ItemGroup>
-    <ProjectReference Include="..\ServiceRegistrationGenerator.ExampleLibrary\ServiceRegistrationGenerator.ExampleLibrary.csproj" />
-    <ProjectReference Include="..\ServiceRegistrationGenerator\ServiceRegistrationGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\BunnyTail.ServiceRegistration.Generator\BunnyTail.ServiceRegistration.Generator.csproj" OutputItemType="analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\BunnyTail.ServiceRegistration\BunnyTail.ServiceRegistration.csproj" />
+    <ProjectReference Include="..\Develop.Library\Develop.Library.csproj" />
   </ItemGroup>
 
 </Project>

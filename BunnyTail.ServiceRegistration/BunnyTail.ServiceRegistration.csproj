@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <CodeAnalysisRuleSet>..\Analyzers.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>$(NoWarn);NU5129</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PackBuildOutputs</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <Target Name="PackBuildOutputs" DependsOnTargets="SatelliteDllsProjectOutputGroup;DebugSymbolsProjectOutputGroup">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="..\BunnyTail.ServiceRegistration.Generator\build\**" PackagePath="build" />
+      <TfmSpecificPackageFile Include="$(OutputPath)\BunnyTail.ServiceRegistration.Generator.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    </ItemGroup>
+  </Target>
+
+  <PropertyGroup>
+    <PackageId>BunnyTail.ServiceRegistration</PackageId>
+    <Title>BunnyTail.ServiceRegistration</Title>
+    <Description>Service registration source generator.</Description>
+    <PackageTags>sourcegenerator di dependencyinjection</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BunnyTail.ServiceRegistration.Generator\BunnyTail.ServiceRegistration.Generator.csproj" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

@@ -1,4 +1,4 @@
-namespace ServiceRegistrationGenerator.ExampleLibrary;
+namespace Develop.Library;
 
 #pragma warning disable CA1822
 public sealed class FooService

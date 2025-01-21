@@ -1,8 +1,8 @@
-namespace ServiceRegistrationGenerator;
+namespace BunnyTail.ServiceRegistration;
+
+using Develop.Library;
 
 using Microsoft.Extensions.DependencyInjection;
-
-using ServiceRegistrationGenerator.ExampleLibrary;
 
 public class GeneratorTest
 {
