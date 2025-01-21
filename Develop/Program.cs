@@ -22,7 +22,7 @@ internal static partial class ServiceCollectionExtensions
     public static partial IServiceCollection AddViews(this IServiceCollection services);
 
     [ServiceRegistration(Lifetime.Singleton, "Service$")]
-    [ServiceRegistration(Lifetime.Singleton, "Service$", Assembly = "ServiceRegistrationGenerator.ExampleLibrary")]
+    [ServiceRegistration(Lifetime.Singleton, "Service$", Assembly = "Develop.Library")]
     public static partial IServiceCollection AddServices(this IServiceCollection services);
 }
 

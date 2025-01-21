@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <ServiceRegistrationIgnoreInterface>ServiceRegistrationGenerator.Example.INavigation</ServiceRegistrationIgnoreInterface>
+    <ServiceRegistrationIgnoreInterface>Develop.INavigation</ServiceRegistrationIgnoreInterface>
   </PropertyGroup>
 
   <ItemGroup>

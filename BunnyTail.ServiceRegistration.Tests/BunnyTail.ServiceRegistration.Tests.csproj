@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <ServiceRegistrationIgnoreInterface>ServiceRegistrationGenerator.INavigation</ServiceRegistrationIgnoreInterface>
+    <ServiceRegistrationIgnoreInterface>BunnyTail.ServiceRegistration.INavigation</ServiceRegistrationIgnoreInterface>
   </PropertyGroup>
 
   <ItemGroup>

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Immutable;
 using System.Globalization;
 using System.Text;
+using System.Text.RegularExpressions;
 
 using BunnyTail.ServiceRegistration.Generator.Helpers;
 using BunnyTail.ServiceRegistration.Generator.Models;
@@ -222,7 +223,39 @@ public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
                 .NewLine();
             builder.BeginScope();
 
-            // TODO
+            foreach (var attribute in method.Attributes.ToArray())
+            {
+                var regex = new Regex(attribute.Pattern);
+
+                foreach (var namedTypeSymbol in ResolveClasses(compilation, attribute.Assembly))
+                {
+                    if ((!String.IsNullOrEmpty(attribute.Namespace) && (attribute.Namespace != namedTypeSymbol.ContainingNamespace.ToDisplayString())) ||
+                        !regex.IsMatch(namedTypeSymbol.Name))
+                    {
+                        continue;
+                    }
+
+                    var interfaces = namedTypeSymbol.Interfaces
+                        .Where(x => !ignoreInterfaces.Contains(x.ToDisplayString()))
+                        .ToArray();
+                    if (interfaces.Length == 0)
+                    {
+                        BuildRegistrationCall(builder, method.ParameterName, attribute.Lifetime, namedTypeSymbol);
+                    }
+                    else if (interfaces.Length == 1)
+                    {
+                        BuildRegistrationCall(builder, method.ParameterName, attribute.Lifetime, namedTypeSymbol, interfaces[0]);
+                    }
+                    else
+                    {
+                        BuildRegistrationCall(builder, method.ParameterName, attribute.Lifetime, namedTypeSymbol);
+                        foreach (var serviceAs in interfaces)
+                        {
+                            BuildRegistrationCallAsInterface(builder, method.ParameterName, attribute.Lifetime, namedTypeSymbol, serviceAs);
+                        }
+                    }
+                }
+            }
 
             builder
                 .Indent()
@@ -234,6 +267,68 @@ public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
         }
 
         builder.EndScope();
+    }
+
+    private static void BuildRegistrationCall(SourceBuilder builder, string parameter, int lifetime, INamedTypeSymbol service, INamedTypeSymbol? serviceAs = null)
+    {
+        builder.Indent();
+        builder.Append(parameter);
+        builder.Append(".Add");
+        AddScope(builder, lifetime);
+        builder.Append('<');
+        if (serviceAs is not null)
+        {
+            builder.Append(serviceAs.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat));
+            builder.Append(", ");
+        }
+        builder.Append(service.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat));
+        builder.Append(">();");
+        builder.NewLine();
+    }
+
+    private static void BuildRegistrationCallAsInterface(SourceBuilder builder, string parameter, int lifetime, INamedTypeSymbol service, INamedTypeSymbol serviceAs)
+    {
+        builder.Indent();
+        builder.Append(parameter);
+        builder.Append(".Add");
+        AddScope(builder, lifetime);
+        builder.Append('<');
+        builder.Append(serviceAs.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat));
+        builder.Append(">(static x => x.GetRequiredService<");
+        builder.Append(service.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat));
+        builder.Append(">());");
+        builder.NewLine();
+    }
+
+    private static void AddScope(SourceBuilder builder, int lifetime)
+    {
+        builder.Append(lifetime switch
+        {
+            1 => "Singleton",
+            2 => "Scoped",
+            _ => "Transient"
+        });
+    }
+
+    private static IEnumerable<INamedTypeSymbol> ResolveClasses(Compilation compilation, string assembly)
+    {
+        if (String.IsNullOrEmpty(assembly))
+        {
+            return compilation.Assembly.GlobalNamespace.GetTypeMembersRecursive(ClassFilter);
+        }
+
+        foreach (var reference in compilation.References)
+        {
+            if ((compilation.GetAssemblyOrModuleSymbol(reference) is IAssemblySymbol assemblySymbol) &&
+                String.Equals(assemblySymbol.Identity.Name, assembly, StringComparison.Ordinal))
+            {
+                return assemblySymbol.GlobalNamespace.GetTypeMembersRecursive(ClassFilter);
+            }
+        }
+
+        return [];
+
+        bool ClassFilter(INamedTypeSymbol symbol) => symbol.TypeKind == TypeKind.Class;
     }
 
     // ------------------------------------------------------------
