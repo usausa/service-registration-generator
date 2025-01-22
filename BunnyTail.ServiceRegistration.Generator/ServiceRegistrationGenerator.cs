@@ -75,21 +75,21 @@ public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
         // Validate method definition
         if (!symbol.IsStatic || !symbol.IsPartialDefinition || !symbol.IsExtensionMethod)
         {
-            return Results.Error<MethodModel>(new DiagnosticInfo(Diagnostics.InvalidMethodDefinition, syntax.GetLocation()));
+            return Results.Error<MethodModel>(new DiagnosticInfo(Diagnostics.InvalidMethodDefinition, syntax.GetLocation(), symbol.Name));
         }
 
         // Validate parameter
         if ((symbol.Parameters.Length != 1) ||
             (symbol.Parameters[0].Type.ToDisplayString() != ServiceCollectionName))
         {
-            return Results.Error<MethodModel>(new DiagnosticInfo(Diagnostics.InvalidMethodParameter, syntax.GetLocation()));
+            return Results.Error<MethodModel>(new DiagnosticInfo(Diagnostics.InvalidMethodParameter, syntax.GetLocation(), symbol.Name));
         }
 
         // Validate return type
         if ((symbol.ReturnType is not INamedTypeSymbol returnTypeSymbol) ||
             (returnTypeSymbol.ToDisplayString() != ServiceCollectionName))
         {
-            return Results.Error<MethodModel>(new DiagnosticInfo(Diagnostics.InvalidMethodReturnType, syntax.GetLocation()));
+            return Results.Error<MethodModel>(new DiagnosticInfo(Diagnostics.InvalidMethodReturnType, syntax.GetLocation(), symbol.Name));
         }
 
         var containingType = symbol.ContainingType;
