@@ -72,9 +72,14 @@ public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
             return Results.Error<MethodModel>(null);
         }
 
-        // Validate argument
+        // Validate method style
+        if (!symbol.IsStatic || !symbol.IsPartialDefinition || !symbol.IsExtensionMethod)
+        {
+            return Results.Error<MethodModel>(new DiagnosticInfo(Diagnostics.InvalidMethodStyle, syntax.GetLocation()));
+        }
+
+        // Validate parameter
         if ((symbol.Parameters.Length != 1) ||
-            !symbol.IsExtensionMethod ||
             (symbol.Parameters[0].Type.ToDisplayString() != ServiceCollectionName))
         {
             return Results.Error<MethodModel>(new DiagnosticInfo(Diagnostics.InvalidMethodParameter, syntax.GetLocation()));
