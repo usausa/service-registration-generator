@@ -4,9 +4,9 @@ using Microsoft.CodeAnalysis;
 
 internal static class Diagnostics
 {
-    public static DiagnosticDescriptor InvalidMethodStyle => new(
+    public static DiagnosticDescriptor InvalidMethodDefinition => new(
         id: "RFSR0001",
-        title: "Invalid method parameter",
+        title: "Invalid method definition",
         messageFormat: "Method must be partial extension method.",
         category: "Usage",
         defaultSeverity: DiagnosticSeverity.Warning,
