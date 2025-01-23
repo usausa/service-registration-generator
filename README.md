@@ -2,7 +2,7 @@
 
 | Package | Info |
 |:-|:-|
-| BunnyTail.ServiceRegistrationGenerator | [![NuGet](https://img.shields.io/nuget/v/BunnyTail.ServiceRegistrationGenerator.svg)](https://www.nuget.org/packages/BunnyTail.ServiceRegistrationGenerator) |
+| BunnyTail.ServiceRegistration | [![NuGet](https://img.shields.io/nuget/v/BunnyTail.ServiceRegistration.svg)](https://www.nuget.org/packages/BunnyTail.ServiceRegistration) |
 
 ## What is this?
 
