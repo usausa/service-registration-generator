@@ -281,33 +281,37 @@ public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
 
     private static void BuildRegistrationCall(SourceBuilder builder, string parameter, int lifetime, INamedTypeSymbol service, INamedTypeSymbol? serviceAs = null)
     {
-        builder.Indent();
-        builder.Append(parameter);
-        builder.Append(".Add");
+        builder
+            .Indent()
+            .Append(parameter)
+            .Append(".Add");
         AddScope(builder, lifetime);
         builder.Append('<');
         if (serviceAs is not null)
         {
-            builder.Append(serviceAs.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat));
-            builder.Append(", ");
+            builder
+                .Append(serviceAs.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)).Append(", ");
         }
-        builder.Append(service.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat));
-        builder.Append(">();");
-        builder.NewLine();
+        builder
+            .Append(service.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat))
+            .Append(">();")
+            .NewLine();
     }
 
     private static void BuildRegistrationCallAsInterface(SourceBuilder builder, string parameter, int lifetime, INamedTypeSymbol service, INamedTypeSymbol serviceAs)
     {
-        builder.Indent();
-        builder.Append(parameter);
-        builder.Append(".Add");
+        builder.
+            Indent()
+            .Append(parameter)
+            .Append(".Add");
         AddScope(builder, lifetime);
-        builder.Append('<');
-        builder.Append(serviceAs.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat));
-        builder.Append(">(static x => x.GetRequiredService<");
-        builder.Append(service.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat));
-        builder.Append(">());");
-        builder.NewLine();
+        builder
+            .Append('<')
+            .Append(serviceAs.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat))
+            .Append(">(static x => x.GetRequiredService<")
+            .Append(service.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat))
+            .Append(">());")
+            .NewLine();
     }
 
     private static void AddScope(SourceBuilder builder, int lifetime)
