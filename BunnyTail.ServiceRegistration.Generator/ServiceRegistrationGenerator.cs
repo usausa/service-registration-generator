@@ -197,7 +197,12 @@ public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
         builder.NewLine();
 
         // class
-        builder.Indent().Append("partial ").Append(isValueType ? "struct " : "class ").Append(className).NewLine();
+        builder
+            .Indent()
+            .Append("partial ")
+            .Append(isValueType ? "struct " : "class ")
+            .Append(className)
+            .NewLine();
         builder.BeginScope();
 
         var first = true;
