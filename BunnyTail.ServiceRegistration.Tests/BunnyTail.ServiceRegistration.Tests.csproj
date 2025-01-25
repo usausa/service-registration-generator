@@ -19,6 +19,8 @@
     <ServiceRegistrationIgnoreInterface>BunnyTail.ServiceRegistration.INavigation</ServiceRegistrationIgnoreInterface>
   </PropertyGroup>
 
+  <Import Project="..\BunnyTail.ServiceRegistration.props" />
+
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.4">
       <PrivateAssets>all</PrivateAssets>
@@ -29,8 +31,6 @@
     <PackageReference Include="xunit.v3" Version="1.0.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.0.1" />
   </ItemGroup>
-
-  <Import Project="..\BunnyTail.ServiceRegistration.Generator\build\BunnyTail.ServiceRegistration.props" />
 
   <ItemGroup>
     <ProjectReference Include="..\BunnyTail.ServiceRegistration.Generator\BunnyTail.ServiceRegistration.Generator.csproj" OutputItemType="analyzer" ReferenceOutputAssembly="false" />
