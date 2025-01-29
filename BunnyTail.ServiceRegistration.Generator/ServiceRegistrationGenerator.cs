@@ -65,12 +65,8 @@ public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
 
     private static Result<MethodModel> GetMethodModel(GeneratorAttributeSyntaxContext context)
     {
-        var syntax = (MethodDeclarationSyntax)context.TargetNode;
-
-        if (context.SemanticModel.GetDeclaredSymbol(syntax) is not IMethodSymbol symbol)
-        {
-            return Results.Error<MethodModel>(null);
-        }
+        var syntax = context.TargetNode;
+        var symbol = (IMethodSymbol)context.TargetSymbol;
 
         // Validate method definition
         if (!symbol.IsStatic || !symbol.IsPartialDefinition || !symbol.IsExtensionMethod)
