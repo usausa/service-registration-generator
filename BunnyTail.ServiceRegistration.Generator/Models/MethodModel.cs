@@ -1,8 +1,8 @@
 namespace BunnyTail.ServiceRegistration.Generator.Models;
 
-using BunnyTail.ServiceRegistration.Generator.Helpers;
-
 using Microsoft.CodeAnalysis;
+
+using SourceGenerateHelper;
 
 internal sealed record MethodModel(
     string Namespace,

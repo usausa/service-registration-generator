@@ -6,13 +6,14 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
-using BunnyTail.ServiceRegistration.Generator.Helpers;
 using BunnyTail.ServiceRegistration.Generator.Models;
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
+
+using SourceGenerateHelper;
 
 [Generator]
 public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
@@ -147,7 +148,7 @@ public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
 
     private static void Execute(SourceProductionContext context, Compilation compilation, OptionModel option, ImmutableArray<Result<MethodModel>> methods)
     {
-        foreach (var info in methods.SelectPart(static x => x.Error))
+        foreach (var info in methods.SelectError())
         {
             context.ReportDiagnostic(info);
         }
@@ -158,7 +159,7 @@ public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
             .ToArray();
 
         var builder = new SourceBuilder();
-        foreach (var group in methods.SelectPart(static x => x.Value).GroupBy(static x => new { x.Namespace, x.ClassName }))
+        foreach (var group in methods.SelectValue().GroupBy(static x => new { x.Namespace, x.ClassName }))
         {
             context.CancellationToken.ThrowIfCancellationRequested();
 
