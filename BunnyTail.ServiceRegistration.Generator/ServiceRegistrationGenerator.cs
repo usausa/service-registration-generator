@@ -218,11 +218,11 @@ public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
             builder
                 .Indent()
                 .Append(method.MethodAccessibility.ToText())
-                .Append(" static partial ")
+                .Append(" static partial global::")
                 .Append(ServiceCollectionName)
                 .Append(' ')
                 .Append(method.MethodName)
-                .Append("(this ")
+                .Append("(this global::")
                 .Append(ServiceCollectionName)
                 .Append(' ')
                 .Append(method.ParameterName)
