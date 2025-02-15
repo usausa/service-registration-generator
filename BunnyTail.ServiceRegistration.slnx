@@ -1,0 +1,20 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="Analyzers.ruleset" />
+    <File Path="BunnyTail.ServiceRegistration.props" />
+    <File Path="BunnyTail.ServiceRegistration.sln.DotSettings" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+    <File Path="test.runsettings" />
+  </Folder>
+  <Project Path="BunnyTail.ServiceRegistration/BunnyTail.ServiceRegistration.csproj" />
+  <Project Path="BunnyTail.ServiceRegistration.Generator/BunnyTail.ServiceRegistration.Generator.csproj" />
+  <Project Path="BunnyTail.ServiceRegistration.Tests/BunnyTail.ServiceRegistration.Tests.csproj" />
+  <Project Path="Develop/Develop.csproj" />
+  <Project Path="Develop.Library/Develop.Library.csproj" />
+</Solution>
