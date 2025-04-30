@@ -236,8 +236,16 @@ public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
 
                 foreach (var namedTypeSymbol in ResolveClasses(compilation, attribute.Assembly))
                 {
-                    if ((!String.IsNullOrEmpty(attribute.Namespace) && (attribute.Namespace != namedTypeSymbol.ContainingNamespace.ToDisplayString())) ||
-                        !regex.IsMatch(namedTypeSymbol.Name))
+                    if (!String.IsNullOrEmpty(attribute.Namespace))
+                    {
+                        var symbolNamespace = namedTypeSymbol.ContainingNamespace.ToDisplayString();
+                        if ((symbolNamespace != attribute.Namespace) && !symbolNamespace.StartsWith(attribute.Namespace + ".", StringComparison.Ordinal))
+                        {
+                            continue;
+                        }
+                    }
+
+                    if (!regex.IsMatch(namedTypeSymbol.Name))
                     {
                         continue;
                     }
