@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
@@ -14,7 +14,7 @@
   <Target Name="PackBuildOutputs" DependsOnTargets="SatelliteDllsProjectOutputGroup;DebugSymbolsProjectOutputGroup">
     <ItemGroup>
       <TfmSpecificPackageFile Include="..\BunnyTail.ServiceRegistration.props" PackagePath="build" />
-      <TfmSpecificPackageFile Include="$(OutputPath)\BunnyTail.ServiceRegistration.Generator.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+      <TfmSpecificPackageFile Include="..\BunnyTail.ServiceRegistration.Generator\bin\$(Configuration)\netstandard2.0\BunnyTail.ServiceRegistration.Generator.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
       <TfmSpecificPackageFile Include="$(PKGSourceGenerateHelper)\lib\netstandard2.0\SourceGenerateHelper.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     </ItemGroup>
   </Target>
@@ -28,10 +28,6 @@
 
   <ItemGroup>
     <PackageReference Include="SourceGenerateHelper" Version="1.2.1" GeneratePathProperty="true" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\BunnyTail.ServiceRegistration.Generator\BunnyTail.ServiceRegistration.Generator.csproj" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>
