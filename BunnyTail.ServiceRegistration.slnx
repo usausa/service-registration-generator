@@ -6,11 +6,11 @@
     <File Path="Analyzers.ruleset" />
     <File Path="BunnyTail.ServiceRegistration.props" />
     <File Path="BunnyTail.ServiceRegistration.sln.DotSettings" />
+    <File Path="CodeCoverage.runsettings" />
     <File Path="Directory.Build.props" />
     <File Path="Directory.Build.targets" />
     <File Path="LICENSE" />
     <File Path="README.md" />
-    <File Path="test.runsettings" />
   </Folder>
   <Project Path="BunnyTail.ServiceRegistration/BunnyTail.ServiceRegistration.csproj">
     <BuildDependency Project="BunnyTail.ServiceRegistration.Generator/BunnyTail.ServiceRegistration.Generator.csproj" />
