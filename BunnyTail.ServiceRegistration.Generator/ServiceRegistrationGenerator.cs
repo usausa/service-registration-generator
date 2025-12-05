@@ -108,8 +108,13 @@ public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
     {
         var list = new List<AttributeModel>();
 
-        foreach (var attributeData in symbol.GetAttributes().Where(static x => x.AttributeClass!.ToDisplayString() == AttributeName))
+        foreach (var attributeData in symbol.GetAttributes())
         {
+            if (attributeData.AttributeClass?.ToDisplayString() != AttributeName)
+            {
+                continue;
+            }
+
             var lifetime = Convert.ToInt32(attributeData.ConstructorArguments[0].Value, CultureInfo.InvariantCulture);
             var pattern = attributeData.ConstructorArguments[1].Value?.ToString() ?? string.Empty;
             var assembly = string.Empty;
@@ -232,7 +237,7 @@ public sealed class ServiceRegistrationGenerator : IIncrementalGenerator
 
             foreach (var attribute in method.Attributes.ToArray())
             {
-                var regex = new Regex(attribute.Pattern);
+                var regex = new Regex(attribute.Pattern, RegexOptions.Compiled);
 
                 foreach (var namedTypeSymbol in ResolveClasses(compilation, attribute.Assembly))
                 {
