@@ -1,4 +1,4 @@
-# BunnyTail.ServiceRegistrationGenerator
+# BunnyTail.ServiceRegistration
 
 | Package | Info |
 |:-|:-|
